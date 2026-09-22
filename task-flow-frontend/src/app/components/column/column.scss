@@ -1,10 +1,12 @@
 .column {
-  min-height: 70vh;
-  background: #ecebe7;
-  width: 258px;
-  border-radius: 10px;
-  padding: 12px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
+  &__wrapper {
+    min-height: 70vh;
+    background: #ecebe7;
+    width: 258px;
+    border-radius: 10px;
+    padding: 12px;
+  }
 }

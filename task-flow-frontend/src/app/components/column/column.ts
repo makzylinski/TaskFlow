@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { ColumnService } from '../../services/column-service';
 
 @Component({
   imports: [],
@@ -6,4 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './column.scss',
   templateUrl: './column.html',
 })
-export class Column {}
+export class Column implements OnInit {
+  columns: { id: number; name: string }[] = [];
+
+  columnService = inject(ColumnService);
+
+  ngOnInit(): void {
+    this.columns = this.columnService.getColumns();
+  }
+}
