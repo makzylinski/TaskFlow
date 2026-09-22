@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   imports: [],
@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './board.scss',
   templateUrl: './board.html',
 })
-export class Board imp {
-
+export class Board implements OnInit {
+  ngOnInit(): void {
+    console.log('working...');
+  }
 }
