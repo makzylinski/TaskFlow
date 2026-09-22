@@ -1,8 +1,10 @@
 <div class="column">
-  @for (column of columns; track $index) {
-    <div class="column__wrapper">
-      <div class="column__name">{{ column.name.toUpperCase() }}</div>
-    </div>
-  }
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    @for (column of columns; track column.id) {
+      <div class="column__wrapper" cdkDrag>
+        <div class="column__name">{{ column.name.toUpperCase() }}</div>
+      </div>
+    }
+  </div>
   <div class="column__footer">+ Add task</div>
 </div>

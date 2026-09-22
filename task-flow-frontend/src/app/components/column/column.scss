@@ -4,14 +4,35 @@
   gap: 10px;
 
   &__wrapper {
-    min-height: 70vh;
-    background: #ecebe7;
-    width: 258px;
-    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #e7e5e1;
+    border-radius: 8px;
     padding: 12px;
+    margin-bottom: 8px;
+    cursor: grab;
   }
 
   &__name {
     font-weight: 700;
   }
+}
+
+.example-list {
+  min-height: 70vh;
+  width: 258px;
+  background: #ecebe7;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.cdk-drag-preview {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+.cdk-drop-list-dragging .column__wrapper:not(.cdk-drag-placeholder) {
+  transition: transform 250ms ease;
 }
