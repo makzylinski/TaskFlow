@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Column } from '../column/column';
 
 @Component({
-  imports: [],
+  imports: [Column],
   selector: 'app-board',
   styleUrl: './board.scss',
   templateUrl: './board.html',
