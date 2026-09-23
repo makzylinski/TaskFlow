@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
 
   &__wrapper {
     background: #fff;

@@ -1,6 +1,11 @@
-import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  DragDropModule,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { Component, inject, OnInit } from '@angular/core';
-import { ColumnService } from '../../services/column-service';
+import { BoardColumn, ColumnService } from '../../services/column-service';
 
 @Component({
   imports: [DragDropModule],
@@ -9,15 +14,23 @@ import { ColumnService } from '../../services/column-service';
   templateUrl: './column.html',
 })
 export class Column implements OnInit {
-  columns: { id: number; name: string }[] = [];
-
+  columns: BoardColumn[] = [];
   columnService = inject(ColumnService);
 
   ngOnInit(): void {
     this.columns = this.columnService.getColumns();
   }
 
-  drop(event: CdkDragDrop<{ id: number; name: string }[]>) {
-    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 }
