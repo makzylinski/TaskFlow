@@ -1,40 +1,8 @@
 .column {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  user-select: none;
-  -webkit-user-select: none; /* Safari */
-
-  &__wrapper {
-    background: #fff;
-    border: 1px solid #e7e5e1;
-    border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 8px;
-    cursor: grab;
-  }
-
-  &__name {
-    font-weight: 700;
-  }
+  flex: 1;
+  min-width: 260px;
 }
 
-.example-list {
-  min-height: 70vh;
-  width: 258px;
-  background: #ecebe7;
-  border-radius: 10px;
-  padding: 12px;
-}
-
-.cdk-drag-preview {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.cdk-drag-placeholder {
-  opacity: 0.3;
-}
-
-.cdk-drop-list-dragging .column__wrapper:not(.cdk-drag-placeholder) {
-  transition: transform 250ms ease;
+.column__list {
+  min-height: 80px; // bez tego nie upuścisz taska na pustą kolumnę
 }

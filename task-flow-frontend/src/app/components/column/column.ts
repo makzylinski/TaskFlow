@@ -1,36 +1,15 @@
-import {
-  CdkDragDrop,
-  DragDropModule,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
-import { Component, inject, OnInit } from '@angular/core';
-import { BoardColumn, ColumnService } from '../../services/column-service';
+import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
+import { Component, input, output } from '@angular/core';
+import { Task, TaskModel } from '../task/task';
 
 @Component({
-  imports: [DragDropModule],
   selector: 'app-column',
+  imports: [Task, CdkDropList, CdkDrag],
   styleUrl: './column.scss',
   templateUrl: './column.html',
 })
-export class Column implements OnInit {
-  columns: BoardColumn[] = [];
-  columnService = inject(ColumnService);
-
-  ngOnInit(): void {
-    this.columns = this.columnService.getColumns();
-  }
-
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
-    }
-  }
+export class Column {
+  title = input.required<string>();
+  tasks = input.required<TaskModel[]>();
+  dropped = output<CdkDragDrop<TaskModel[]>>();
 }

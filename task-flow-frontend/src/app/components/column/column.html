@@ -1,20 +1,14 @@
-<div class="column" cdkDropListGroup>
-  @for (col of columns; track col.id) {
-    <div class="example-container">
-      <h2>{{ col.name }}</h2>
+<div class="column">
+  <h3 class="column__title">{{ title() }}</h3>
 
-      <div
-        cdkDropList
-        [cdkDropListData]="col.tasks"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)"
-      >
-        @for (item of col.tasks; track item) {
-          <div class="example-box" cdkDrag>{{ item }}</div>
-        }
-      </div>
-    </div>
-  }
-
-  <div class="column__footer">+ Add task</div>
+  <div
+    class="column__list"
+    cdkDropList
+    [cdkDropListData]="tasks()"
+    (cdkDropListDropped)="dropped.emit($event)"
+  >
+    @for (t of tasks(); track t.id) {
+      <app-task cdkDrag [task]="t" />
+    }
+  </div>
 </div>
