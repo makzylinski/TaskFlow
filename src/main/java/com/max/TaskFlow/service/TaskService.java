@@ -1,5 +1,6 @@
 package com.max.TaskFlow.service;
 
+import com.max.TaskFlow.DTO.CreateTaskRequest;
 import com.max.TaskFlow.model.Task;
 import com.max.TaskFlow.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,8 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public Task generateTask() {
+    public Task generateTask(CreateTaskRequest request) {
+
+        return taskRepository.save();
     }
 }
