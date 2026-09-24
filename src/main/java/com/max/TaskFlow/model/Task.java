@@ -30,6 +30,8 @@ public class Task {
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
+        this.dateCreated = LocalDateTime.now();
+        this.status = "To do";
     }
 
 }
