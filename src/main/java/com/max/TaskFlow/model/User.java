@@ -19,7 +19,7 @@ public class User {
     private String firstName;
     private String lastName;
     private LocalDateTime dateCreated;
-    @OneToMany
+    @OneToMany(mappedBy = "assignee")
     private List<Task> assignedTasks;
     private List<Board> assignedBoards;
 }
