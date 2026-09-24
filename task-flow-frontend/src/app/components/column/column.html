@@ -11,7 +11,7 @@
     (cdkDropListDropped)="dropped.emit($event)"
   >
     @for (t of tasks(); track t.id) {
-      <app-task cdkDrag [task]="t" />
+      <app-task cdkDrag [cdkDragData]="t" [task]="t" />
     }
   </div>
 </div>
