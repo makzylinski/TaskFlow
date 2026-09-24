@@ -32,6 +32,7 @@ export class Board {
         event.previousIndex,
         event.currentIndex,
       );
+      console.log(this.todo, this.inProgress, this.done);
     }
   }
 }
