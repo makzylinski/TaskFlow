@@ -6,7 +6,8 @@ export interface TaskModel {
   title: string;
   date: string;
   person: string;
-  description?: string;
+  description: string;
+  status: string;
 }
 
 @Component({

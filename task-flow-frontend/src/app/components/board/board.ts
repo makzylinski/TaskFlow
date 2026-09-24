@@ -4,9 +4,10 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TaskService } from '../../services/task-service';
+import { separateTasksByStatus } from '../../utils/task-status';
 import { Column } from '../column/column';
 import { NewTask, TaskModal } from '../task-modal/task-modal';
 import { TaskModel } from '../task/task';
@@ -17,20 +18,27 @@ import { TaskModel } from '../task/task';
   styleUrl: './board.scss',
   templateUrl: './board.html',
 })
-export class Board {
+export class Board implements OnInit {
   private taskService = inject(TaskService);
 
   tasks = toSignal(this.taskService.getTasks());
 
-  todo: TaskModel[] = [
-    { id: 1, type: 'Design', title: 'Design new onboarding flow', date: 'Oct 3', person: 'MZ' },
-    { id: 2, type: 'Dev', title: 'Setup CI', date: 'Oct 5', person: 'MZ' },
-  ];
+  todo: TaskModel[] = [];
   inProgress: TaskModel[] = [];
   review: TaskModel[] = [];
   done: TaskModel[] = [];
 
   modalOpen = signal(false);
+
+  ngOnInit(): void {
+    this.taskService.getTasks().subscribe((tasks) => {
+      const separatedTasks = separateTasksByStatus(tasks as TaskModel[]);
+      this.todo = separatedTasks.todo;
+      this.inProgress = separatedTasks.inProgress;
+      this.review = separatedTasks.review;
+      this.done = separatedTasks.done;
+    });
+  }
 
   addTask(newTask: NewTask) {
     const task = {
