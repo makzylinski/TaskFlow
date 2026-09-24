@@ -7,7 +7,7 @@ export class TaskService {
   private http = inject(HttpClient);
 
   getTasks = () =>
-    this.http.get('http://localhost:8080/tasks').pipe(
+    this.http.get('http://localhost:8080/api/tasks').pipe(
       map((el) => console.log(el)),
       take(1),
     );
