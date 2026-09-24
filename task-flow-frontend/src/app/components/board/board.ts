@@ -26,6 +26,7 @@ export class Board {
     { id: 2, type: 'Dev', title: 'Setup CI', date: 'Oct 5', person: 'MZ' },
   ];
   inProgress: TaskModel[] = [];
+  review: TaskModel[] = [];
   done: TaskModel[] = [];
 
   drop(event: CdkDragDrop<TaskModel[]>) {
