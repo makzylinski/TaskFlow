@@ -1,8 +1,8 @@
-.column {
+:host {
   flex: 1;
   min-width: 260px;
 }
 
 .column__list {
-  min-height: 80px; // bez tego nie upuścisz taska na pustą kolumnę
+  min-height: 80px;
 }

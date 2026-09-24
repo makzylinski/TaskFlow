@@ -1,0 +1,43 @@
+:host {
+  display: block; // app-task jest domyślnie inline
+  margin-bottom: 12px;
+}
+
+.task {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+  cursor: grab;
+}
+
+.task__type {
+  justify-self: start;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.task__header {
+  font-weight: 500;
+}
+.task__date {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.task__person {
+  justify-self: end;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #4338ca;
+  color: #fff;
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+}

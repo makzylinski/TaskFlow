@@ -1,17 +1,17 @@
 import {
-  CdkDrag,
   CdkDragDrop,
-  CdkDropList,
   CdkDropListGroup,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
-import { Task, TaskModel } from '../task/task';
+import { Column } from '../column/column';
+import { TaskModel } from '../task/task';
 
 @Component({
   selector: 'app-board',
-  imports: [Task, CdkDropListGroup, CdkDropList, CdkDrag],
+  imports: [CdkDropListGroup, Column],
+  styleUrl: './board.scss',
   templateUrl: './board.html',
 })
 export class Board {

@@ -1,33 +1,5 @@
 <div class="board" cdkDropListGroup>
-  <div class="column">
-    <h3>To do</h3>
-    <div class="list" cdkDropList [cdkDropListData]="todo" (cdkDropListDropped)="drop($event)">
-      @for (t of todo; track t.id) {
-        <app-task cdkDrag [task]="t" />
-      }
-    </div>
-  </div>
-
-  <div class="column">
-    <h3>In progress</h3>
-    <div
-      class="list"
-      cdkDropList
-      [cdkDropListData]="inProgress"
-      (cdkDropListDropped)="drop($event)"
-    >
-      @for (t of inProgress; track t.id) {
-        <app-task cdkDrag [task]="t" />
-      }
-    </div>
-  </div>
-
-  <div class="column">
-    <h3>Done</h3>
-    <div class="list" cdkDropList [cdkDropListData]="done" (cdkDropListDropped)="drop($event)">
-      @for (t of done; track t.id) {
-        <app-task cdkDrag [task]="t" />
-      }
-    </div>
-  </div>
+  <app-column title="To do" [tasks]="todo" (dropped)="drop($event)" />
+  <app-column title="In progress" [tasks]="inProgress" (dropped)="drop($event)" />
+  <app-column title="Done" [tasks]="done" (dropped)="drop($event)" />
 </div>
