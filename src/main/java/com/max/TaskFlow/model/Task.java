@@ -25,6 +25,7 @@ public class Task {
     @JoinColumn(name = "board_id")
     private Board board;
     private String status; // To do, In progress, Review, Done
+    private String type; // ie. Design / Frontend / etc
 
     public Task(String name, String description) {
         this.name = name;
