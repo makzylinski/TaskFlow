@@ -1,19 +1,29 @@
 package com.max.TaskFlow.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 public class Board {
-    private int boardId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String description;
     private LocalDateTime dateCreated;
+    @ManyToMany(mappedBy = "boards")
+    private Set<User> members = new HashSet<>();
+    @OneToMany
+    private List<Task> tasks = new ArrayList<>();
 }

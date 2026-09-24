@@ -11,13 +11,14 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
 public class User {
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private Long userId;
     private String firstName;
     private String lastName;
     private LocalDateTime dateCreated;
