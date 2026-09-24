@@ -6,7 +6,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Component, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { TaskService } from '../../services/taskService';
+import { TaskService } from '../../services/task-service';
 import { Column } from '../column/column';
 import { NewTask, TaskModal } from '../task-modal/task-modal';
 import { TaskModel } from '../task/task';

@@ -1,6 +1,6 @@
 import { Component, inject, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TaskService } from '../../services/taskService';
+import { TaskService } from '../../services/task-service';
 
 export interface NewTask {
   name: string;
