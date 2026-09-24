@@ -25,4 +25,9 @@ public class Task {
     @JoinColumn(name = "board_id")
     private Board board;
 
+    public Task(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
 }
