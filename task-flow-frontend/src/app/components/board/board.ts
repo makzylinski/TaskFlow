@@ -5,6 +5,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { TaskService } from '../../services/taskService';
 import { Column } from '../column/column';
 import { TaskModel } from '../task/task';
@@ -17,6 +18,8 @@ import { TaskModel } from '../task/task';
 })
 export class Board {
   private taskService = inject(TaskService);
+
+  tasks = toSignal(this.taskService.getTasks());
 
   todo: TaskModel[] = [
     { id: 1, type: 'Design', title: 'Design new onboarding flow', date: 'Oct 3', person: 'MZ' },
