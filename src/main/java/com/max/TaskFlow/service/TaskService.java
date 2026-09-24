@@ -34,7 +34,7 @@ public class TaskService {
     }
 
     public Task generateTask(CreateTaskRequest request) {
-
-        return taskRepository.save();
+        Task task = new Task(request.name(), request.description());
+        return taskRepository.save(task);
     }
 }
