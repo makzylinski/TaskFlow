@@ -3,7 +3,14 @@ import { inject, Service } from '@angular/core';
 
 @Service()
 export class TaskService {
+  private readonly baseUrl = 'http://localhost:8080/api';
   private http = inject(HttpClient);
 
-  getTasks = () => this.http.get('http://localhost:8080/api/tasks');
+  getTasks = () => this.http.get(this.baseUrl + '/tasks');
+
+  saveNewTask = (name: string, description: string) =>
+    this.http.post(this.baseUrl + '/new-task', {
+      name,
+      description,
+    });
 }
