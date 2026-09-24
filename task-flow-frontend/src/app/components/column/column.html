@@ -1,5 +1,8 @@
 <div class="column">
-  <h3 class="column__title">{{ title() }}</h3>
+  <div class="column__header">
+    <h3 class="column__title">{{ title() }}</h3>
+    <span class="column__count">{{ tasks().length }}</span>
+  </div>
 
   <div
     class="column__list"
