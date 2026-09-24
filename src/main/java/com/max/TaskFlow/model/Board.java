@@ -24,6 +24,6 @@ public class Board {
     private LocalDateTime dateCreated;
     @ManyToMany(mappedBy = "boards")
     private Set<User> members = new HashSet<>();
-    @OneToMany
+    @OneToMany(mappedBy = "board")
     private List<Task> tasks = new ArrayList<>();
 }
