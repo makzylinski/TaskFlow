@@ -5,10 +5,10 @@ export interface TaskModel {
   type: string;
   name: string;
   title: string;
-  date: string;
   person: string;
   description: string;
   status: string;
+  dateCreated: Date;
 }
 
 @Component({
