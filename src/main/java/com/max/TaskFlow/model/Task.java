@@ -24,6 +24,7 @@ public class Task {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private Board board;
+    private String status; // To do, In progress, Review, Done
 
     public Task(String name, String description) {
         this.name = name;
