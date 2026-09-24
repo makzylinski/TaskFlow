@@ -4,15 +4,16 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TaskService } from '../../services/taskService';
 import { Column } from '../column/column';
+import { NewTask, TaskModal } from '../task-modal/task-modal';
 import { TaskModel } from '../task/task';
 
 @Component({
   selector: 'app-board',
-  imports: [CdkDropListGroup, Column],
+  imports: [CdkDropListGroup, Column, TaskModal],
   styleUrl: './board.scss',
   templateUrl: './board.html',
 })
@@ -28,6 +29,17 @@ export class Board {
   inProgress: TaskModel[] = [];
   review: TaskModel[] = [];
   done: TaskModel[] = [];
+
+  modalOpen = signal(false);
+
+  addTask(newTask: NewTask) {
+    const task = {
+      title: newTask.name,
+      description: newTask.description,
+    };
+
+    this.modalOpen.set(false);
+  }
 
   drop(event: CdkDragDrop<TaskModel[]>) {
     if (event.previousContainer === event.container) {
