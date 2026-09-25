@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '../../services/task-service';
 import { separateTasksByStatus } from '../../utils/task-status';
 import { Column } from '../column/column';
+import { TaskStatus } from '../enum/task-status.enum';
 import { NewTask, TaskModal } from '../task-modal/task-modal';
 import { TaskModel } from '../task/task';
 
@@ -20,6 +21,8 @@ import { TaskModel } from '../task/task';
 })
 export class Board implements OnInit {
   private taskService = inject(TaskService);
+
+  readonly TaskStatus = TaskStatus;
 
   boardId = Number(inject(ActivatedRoute).snapshot.paramMap.get('id'));
 
@@ -50,10 +53,11 @@ export class Board implements OnInit {
     this.loadTasks();
   }
 
-  drop(event: CdkDragDrop<TaskModel[]>) {
+  drop(event: CdkDragDrop<TaskModel[]>, column: TaskStatus) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      console.log(column);
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
