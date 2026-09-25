@@ -1,7 +1,11 @@
-<div class="dashboard">
+﻿<div class="dashboard">
   <div class="dashboard__boards"></div>
-  <div class="dashboard__new">
+  <div class="dashboard__new" (click)="modalOpen.set(true)">
     <div class="dashboard__new--plus">+</div>
     <div class="dashboard__new--add">New project</div>
   </div>
 </div>
+
+@if (modalOpen()) {
+  <app-board-modal (closed)="modalOpen.set(false)" (created)="addBoard($event)" />
+}
