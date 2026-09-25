@@ -1,1 +1,15 @@
-<div class="toolbar"></div>
+<div class="toolbar">
+  <div class="toolbar__title">Projects</div>
+  <div class="toolbar__action">
+    <div class="toolbar__action--search">
+      <app-icon name="search" />
+      <input type="text" placeholder="Search projects" aria-label="Search projects" />
+    </div>
+    <div class="toolbar__action--new">
+      <button type="button">
+        <app-icon name="plus" [strokeWidth]="2.2" />
+        New project
+      </button>
+    </div>
+  </div>
+</div>

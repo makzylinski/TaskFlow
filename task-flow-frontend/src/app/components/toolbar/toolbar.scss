@@ -1,4 +1,73 @@
 .toolbar {
   height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
   background-color: #fff;
+  border-bottom: 1px solid #e7e5e1;
+
+  &__title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #17171b;
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &--search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 240px;
+      height: 38px;
+      padding: 0 12px;
+      border: 1px solid #e7e5e1;
+      border-radius: 8px;
+      background: #fbfaf9;
+      color: #9a9893;
+
+      &:focus-within {
+        border-color: #5457e5;
+      }
+
+      input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-family: inherit;
+        font-size: 13.5px;
+        color: #17171b;
+
+        &::placeholder {
+          color: #9a9893;
+        }
+      }
+    }
+
+    &--new button {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 38px;
+      padding: 0 16px;
+      border: none;
+      border-radius: 8px;
+      background: #5457e5;
+      color: #fff;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        background: #4548d1;
+      }
+    }
+  }
 }
