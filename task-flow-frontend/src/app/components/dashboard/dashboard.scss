@@ -1,10 +1,16 @@
 .dashboard {
   &__new {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     width: 360px;
     height: 150px;
+    font-weight: 700;
     background-color: #fff;
     color: #d8d6d1;
     border: 1px dashed #d8d6d1;
     border-radius: 12px;
+    cursor: pointer;
   }
 }
