@@ -57,13 +57,19 @@ export class Board implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      console.log(column);
+      const task: TaskModel = event.item.data;
+
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex,
       );
+
+      this.taskService.updateTaskStatus(task.id, column).subscribe({
+        next: () => (task.status = column),
+        error: () => this.loadTasks(), // rollback to the state from the database
+      });
     }
   }
 }
