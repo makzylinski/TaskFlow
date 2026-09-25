@@ -4,6 +4,7 @@ import com.max.TaskFlow.DTO.CreateTaskRequest;
 import com.max.TaskFlow.DTO.TaskResponse;
 import com.max.TaskFlow.model.Board;
 import com.max.TaskFlow.model.Task;
+import com.max.TaskFlow.model.TaskStatus;
 import com.max.TaskFlow.repository.BoardRepository;
 import com.max.TaskFlow.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,14 @@ public class TaskService {
                 t.getStatus(),
                 t.getBoard() != null ? t.getBoard().getId() : null,
                 t.getAssignee() != null ? t.getAssignee().getUserId() : null);
+    }
+
+    public TaskResponse updateTask(Long id, TaskStatus status) {
+        Task task = taskRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Task not found: " + id));
+
+        task.setStatus(status);
+        taskRepository.save(task);
+        return toResponse(task);
     }
 }

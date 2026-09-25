@@ -24,14 +24,15 @@ public class Task {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private Board board;
-    private String status; // To do, In progress, Review, Done
+    @Enumerated(EnumType.STRING)
+    private TaskStatus status;
     private String type; // ie. Design / Frontend / etc
 
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
         this.dateCreated = LocalDateTime.now();
-        this.status = "To do";
+        this.status = TaskStatus.TO_DO;
     }
 
 }

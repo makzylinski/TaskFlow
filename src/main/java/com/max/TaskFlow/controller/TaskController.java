@@ -2,6 +2,7 @@ package com.max.TaskFlow.controller;
 
 import com.max.TaskFlow.DTO.CreateTaskRequest;
 import com.max.TaskFlow.DTO.TaskResponse;
+import com.max.TaskFlow.DTO.UpdateTaskStatusRequest;
 import com.max.TaskFlow.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,15 @@ public class TaskController {
     public ResponseEntity<List<TaskResponse>> getTasks(@PathVariable Long boardId) {
         List<TaskResponse> tasks = taskService.getTasks(boardId);
         return new ResponseEntity<>(tasks, HttpStatus.OK);
+    }
+
+    //PATCH /api/tasks/{id}/status     body: { "status": "In progress" }
+
+    @PatchMapping("/tasks/{id}/status")
+    public ResponseEntity<TaskResponse> updateTask(@PathVariable Long id,
+                                                   @Valid @RequestBody UpdateTaskStatusRequest request) {
+        TaskResponse task = taskService.updateTask(id, request.status());
+        return new ResponseEntity<>(task, HttpStatus.OK);
     }
 
     @PostMapping("/new-task")
