@@ -3,4 +3,5 @@ export interface BoardModel {
   name: string;
   description: string;
   dateCreated: string;
+  taskCount: number;
 }

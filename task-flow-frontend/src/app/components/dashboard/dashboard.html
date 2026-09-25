@@ -1,9 +1,25 @@
-﻿<div class="dashboard">
-  <div class="dashboard__boards"></div>
-  <div class="dashboard__new" (click)="modalOpen.set(true)">
-    <div class="dashboard__new--plus">+</div>
-    <div class="dashboard__new--add">New project</div>
-  </div>
+<div class="dashboard__boards">
+  @if (boards.isLoading()) {
+    <p>Loading…</p>
+  } @else if (boards.error()) {
+    <p>Could not load boards. <button (click)="boards.reload()">Retry</button></p>
+  } @else {
+    @for (b of boardList(); track b.id) {
+      <div class="board-card">
+        <h3>{{ b.name }}</h3>
+        <p>{{ b.description }}</p>
+        <div class="board-card__footer">
+          <span class="board-card__count">
+            {{ b.taskCount }} {{ b.taskCount === 1 ? 'task' : 'tasks' }}
+          </span>
+        </div>
+      </div>
+    }
+    <div class="dashboard__new" (click)="modalOpen.set(true)">
+      <div class="dashboard__new--plus">+</div>
+      <div class="dashboard__new--add">New project</div>
+    </div>
+  }
 </div>
 
 @if (modalOpen()) {
