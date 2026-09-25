@@ -17,4 +17,9 @@ export class Toolbar {
   addBoard(newBoard: NewBoard) {
     this.boardService.saveNewBoard(newBoard).subscribe(() => this.modalOpen.set(false));
   }
+
+  onSearchChange = (event: Event) => {
+    const value = (event.target as HTMLInputElement).value;
+    console.log(value);
+  };
 }
