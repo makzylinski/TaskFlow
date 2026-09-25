@@ -1,14 +1,8 @@
-import {
-  CdkDragDrop,
-  CdkDropListGroup,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { CdkDragDrop, CdkDropListGroup } from '@angular/cdk/drag-drop';
+import { ChangeDetectorRef, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TaskStatus } from '../../enum/task-status.enum';
 import { TaskService } from '../../services/task-service';
-import { separateTasksByStatus } from '../../utils/task-status.util';
 import { Column } from '../column/column';
 import { TaskDetail } from '../task-detail/task-detail';
 import { NewTask, TaskModal } from '../task-modal/task-modal';
@@ -22,15 +16,21 @@ import { TaskModel } from '../task/task';
 })
 export class Board implements OnInit {
   private taskService = inject(TaskService);
+  private cdr = inject(ChangeDetectorRef);
 
   readonly TaskStatus = TaskStatus;
 
   boardId = Number(inject(ActivatedRoute).snapshot.paramMap.get('id'));
 
-  todo = signal<TaskModel[]>([]);
-  inProgress = signal<TaskModel[]>([]);
-  review = signal<TaskModel[]>([]);
-  done = signal<TaskModel[]>([]);
+  private tasks = signal<TaskModel[]>([]);
+
+  private byStatus = (status: TaskStatus) =>
+    computed(() => this.tasks().filter((t) => t.status === status));
+
+  todo = this.byStatus(TaskStatus.TO_DO);
+  inProgress = this.byStatus(TaskStatus.IN_PROGRESS);
+  review = this.byStatus(TaskStatus.REVIEW);
+  done = this.byStatus(TaskStatus.DONE);
 
   modalOpen = signal(false);
   selectedTask = signal<TaskModel | null>(null);
@@ -40,14 +40,7 @@ export class Board implements OnInit {
   }
 
   private loadTasks() {
-    this.taskService.getTasks(this.boardId).subscribe((tasks) => {
-      const separatedTasks = separateTasksByStatus(tasks);
-
-      this.todo.set(separatedTasks.todo);
-      this.inProgress.set(separatedTasks.inProgress);
-      this.review.set(separatedTasks.review);
-      this.done.set(separatedTasks.done);
-    });
+    this.taskService.getTasks(this.boardId).subscribe((tasks) => this.tasks.set(tasks));
   }
 
   addTask(_newTask: NewTask) {
@@ -56,22 +49,14 @@ export class Board implements OnInit {
   }
 
   drop(event: CdkDragDrop<TaskModel[]>, column: TaskStatus) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      const task: TaskModel = event.item.data;
+    const task: TaskModel = event.item.data;
+    if (task.status === column) return;
 
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+    this.tasks.update((list) => list.map((t) => (t.id === task.id ? { ...t, status: column } : t)));
+    this.cdr.detectChanges();
 
-      this.taskService.updateTaskStatus(task.id, column).subscribe({
-        next: () => (task.status = column),
-        error: () => this.loadTasks(),
-      });
-    }
+    this.taskService.updateTaskStatus(task.id, column).subscribe({
+      error: () => this.loadTasks(),
+    });
   }
 }
