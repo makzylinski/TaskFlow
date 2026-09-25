@@ -7,11 +7,19 @@ export const separateTasksByStatus = (tasks: TaskModel[]) => {
   const done: TaskModel[] = [];
 
   tasks.forEach((element: TaskModel) => {
-    console.log(element);
-    if (element.status === 'To do') todo.push(element);
-    else if (element.status === 'In progress') inProgress.push(element);
-    else if (element.status === 'review') review.push(element);
-    else if (element.status === 'done') done.push(element);
+    switch (element.status?.toLowerCase()) {
+      case 'in progress':
+        inProgress.push(element);
+        break;
+      case 'review':
+        review.push(element);
+        break;
+      case 'done':
+        done.push(element);
+        break;
+      default:
+        todo.push(element);
+    }
   });
 
   return { todo, inProgress, review, done };

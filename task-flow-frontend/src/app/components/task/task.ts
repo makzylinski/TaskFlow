@@ -3,13 +3,12 @@ import { Component, input, OnInit } from '@angular/core';
 
 export interface TaskModel {
   id: number;
-  type: string;
   name: string;
-  title: string;
-  person: string;
   description: string;
+  dateCreated: string;
   status: string;
-  dateCreated: Date;
+  boardId: number | null;
+  userId: number | null;
 }
 
 @Component({
