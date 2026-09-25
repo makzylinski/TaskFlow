@@ -37,17 +37,10 @@ public class TaskService {
     }
 
     @Transactional(readOnly = true)
-    public List<TaskResponse> getTasks() {
-        return taskRepository.findAll().stream()
-                .map(t -> new TaskResponse(
-                        t.getTaskId(),
-                        t.getName(),
-                        t.getDescription(),
-                        t.getDateCreated(),
-                        t.getStatus(),
-                        t.getBoard() != null ? t.getBoard().getId() : null,
-                        t.getAssignee() != null ? t.getAssignee().getUserId() : null
-                )).toList();
+    public List<TaskResponse> getTasks(Long boardId) {
+        return taskRepository.findByBoardId(boardId).stream()
+                .map(this::toResponse)
+                .toList();
     }
 
     @Transactional

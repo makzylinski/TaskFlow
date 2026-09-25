@@ -19,9 +19,9 @@ public class TaskController {
     @Autowired
     TaskService taskService;
 
-    @GetMapping("/tasks")
-    public ResponseEntity<List<TaskResponse>> getTasks() {
-        List<TaskResponse> tasks = taskService.getTasks();
+    @GetMapping("/tasks/{boardId}")
+    public ResponseEntity<List<TaskResponse>> getTasks(@PathVariable Long boardId) {
+        List<TaskResponse> tasks = taskService.getTasks(boardId);
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
