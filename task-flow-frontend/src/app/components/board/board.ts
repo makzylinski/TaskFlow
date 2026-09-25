@@ -5,7 +5,6 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { TaskService } from '../../services/task-service';
 import { separateTasksByStatus } from '../../utils/task-status';
 import { Column } from '../column/column';
@@ -20,8 +19,6 @@ import { TaskModel } from '../task/task';
 })
 export class Board implements OnInit {
   private taskService = inject(TaskService);
-
-  tasks = toSignal(this.taskService.getTasks());
 
   todo = signal<TaskModel[]>([]);
   inProgress = signal<TaskModel[]>([]);
