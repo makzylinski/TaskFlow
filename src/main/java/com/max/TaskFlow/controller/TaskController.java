@@ -26,8 +26,6 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    //PATCH /api/tasks/{id}/status     body: { "status": "In progress" }
-
     @PatchMapping("/tasks/{id}/status")
     public ResponseEntity<TaskResponse> updateTask(@PathVariable Long id,
                                                    @Valid @RequestBody UpdateTaskStatusRequest request) {
