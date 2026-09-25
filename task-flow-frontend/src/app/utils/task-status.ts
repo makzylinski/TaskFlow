@@ -1,5 +1,5 @@
-import { TaskStatus } from '../components/enum/task-status.enum';
 import { TaskModel } from '../components/task/task';
+import { TaskStatus } from '../enum/task-status.enum';
 
 export const separateTasksByStatus = (tasks: TaskModel[]) => {
   const todo: TaskModel[] = [];

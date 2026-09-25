@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { TaskStatus } from '../enum/task-status.enum';
+import { TaskStatus } from '../../enum/task-status.enum';
 
 export interface TaskModel {
   id: number;

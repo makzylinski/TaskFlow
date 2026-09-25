@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { TaskStatus } from '../components/enum/task-status.enum';
 import { TaskModel } from '../components/task/task';
+import { TaskStatus } from '../enum/task-status.enum';
 
 @Service()
 export class TaskService {
@@ -13,7 +13,7 @@ export class TaskService {
   updateTaskStatus = (taskId: number, status: TaskStatus) =>
     this.http.patch<TaskModel>(`${this.baseUrl}/tasks/${taskId}/status`, { status });
 
-  saveNewTask =(name: string, description: string, boardId: number) =>
+  saveNewTask = (name: string, description: string, boardId: number) =>
     this.http.post(this.baseUrl + '/new-task', {
       name,
       description,
