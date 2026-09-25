@@ -1,2 +1,9 @@
-<app-toolbar></app-toolbar>
-<router-outlet></router-outlet>
+<div class="shell">
+  <app-side-panel />
+  <div class="shell__main">
+    <app-toolbar />
+    <main class="shell__content">
+      <router-outlet />
+    </main>
+  </div>
+</div>
