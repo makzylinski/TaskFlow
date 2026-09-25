@@ -1,4 +1,4 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TaskService } from '../../services/task-service';
 
@@ -15,6 +15,7 @@ export interface NewTask {
   host: { '(document:keydown.escape)': 'closed.emit()' },
 })
 export class TaskModal {
+  boardId = input.required<number>();
   closed = output<void>();
   created = output<NewTask>();
 
@@ -32,6 +33,6 @@ export class TaskModal {
     }
     const { name, description } = this.form.getRawValue();
     this.created.emit({ name: name.trim(), description: description.trim() });
-    this.taskService.saveNewTask(name, description).subscribe();
+    this.taskService.saveNewTask(name, description, this.boardId()).subscribe();
   }
 }

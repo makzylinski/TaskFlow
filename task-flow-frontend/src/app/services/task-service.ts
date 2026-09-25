@@ -8,9 +8,10 @@ export class TaskService {
 
   getTasks = () => this.http.get(this.baseUrl + '/tasks');
 
-  saveNewTask = (name: string, description: string) =>
+  saveNewTask = (name: string, description: string, boardId: number) =>
     this.http.post(this.baseUrl + '/new-task', {
       name,
       description,
+      boardId,
     });
 }

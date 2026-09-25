@@ -5,6 +5,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component, inject, OnInit, signal } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '../../services/task-service';
 import { separateTasksByStatus } from '../../utils/task-status';
 import { Column } from '../column/column';
@@ -19,6 +20,8 @@ import { TaskModel } from '../task/task';
 })
 export class Board implements OnInit {
   private taskService = inject(TaskService);
+
+  boardId = Number(inject(ActivatedRoute).snapshot.paramMap.get('id'));
 
   todo = signal<TaskModel[]>([]);
   inProgress = signal<TaskModel[]>([]);

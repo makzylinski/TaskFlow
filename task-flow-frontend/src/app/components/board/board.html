@@ -10,5 +10,5 @@
 </div>
 
 @if (modalOpen()) {
-  <app-task-modal (closed)="modalOpen.set(false)" (created)="addTask($event)" />
+  <app-task-modal [boardId]="boardId" (closed)="modalOpen.set(false)" (created)="addTask($event)" />
 }
