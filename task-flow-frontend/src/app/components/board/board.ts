@@ -68,7 +68,7 @@ export class Board implements OnInit {
 
       this.taskService.updateTaskStatus(task.id, column).subscribe({
         next: () => (task.status = column),
-        error: () => this.loadTasks(), // rollback to the state from the database
+        error: () => this.loadTasks(),
       });
     }
   }
