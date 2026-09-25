@@ -6,10 +6,14 @@
       <input type="text" placeholder="Search projects" aria-label="Search projects" />
     </div>
     <div class="toolbar__action--new">
-      <button type="button">
+      <button type="button" (click)="modalOpen.set(true)">
         <app-icon name="plus" [strokeWidth]="2.2" />
         New project
       </button>
     </div>
   </div>
 </div>
+
+@if (modalOpen()) {
+  <app-board-modal (closed)="modalOpen.set(false)" (created)="addBoard($event)" />
+}

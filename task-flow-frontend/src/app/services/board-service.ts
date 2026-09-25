@@ -1,5 +1,6 @@
 ﻿import { HttpClient, httpResource } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
+import { tap } from 'rxjs';
 import { NewBoard } from '../components/board-modal/board-modal';
 import { BoardModel } from '../models/board.model';
 
@@ -9,5 +10,6 @@ export class BoardService {
   private http = inject(HttpClient);
   readonly boards = httpResource<BoardModel[]>(() => `${this.baseUrl}/boards`);
 
-  saveNewBoard = (board: NewBoard) => this.http.post(this.baseUrl + '/new-board', board);
+  saveNewBoard = (board: NewBoard) =>
+    this.http.post(this.baseUrl + '/new-board', board).pipe(tap(() => this.boards.reload()));
 }

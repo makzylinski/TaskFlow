@@ -17,9 +17,6 @@ export class Dashboard {
   modalOpen = signal(false);
 
   addBoard(newBoard: NewBoard) {
-    this.boardService.saveNewBoard(newBoard).subscribe(() => {
-      this.boards.reload();
-      this.modalOpen.set(false);
-    });
+    this.boardService.saveNewBoard(newBoard).subscribe(() => this.modalOpen.set(false));
   }
 }
