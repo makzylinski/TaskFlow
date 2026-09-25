@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 export interface TaskModel {
   id: number;
@@ -17,10 +17,6 @@ export interface TaskModel {
   styleUrl: './task.scss',
   templateUrl: './task.html',
 })
-export class Task implements OnInit {
+export class Task {
   task = input.required<TaskModel>();
-
-  ngOnInit(): void {
-    console.log(this.task());
-  }
 }

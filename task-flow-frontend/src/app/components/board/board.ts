@@ -60,7 +60,6 @@ export class Board implements OnInit {
         event.previousIndex,
         event.currentIndex,
       );
-      console.log(this.todo, this.inProgress, this.done);
     }
   }
 }
