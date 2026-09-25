@@ -20,6 +20,6 @@ export class Toolbar {
 
   onSearchChange = (event: Event) => {
     const value = (event.target as HTMLInputElement).value;
-    console.log(value);
+    this.boardService.setSearchPhrase(value);
   };
 }

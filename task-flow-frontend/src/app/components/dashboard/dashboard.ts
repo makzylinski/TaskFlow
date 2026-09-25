@@ -13,7 +13,7 @@ export class Dashboard {
   private boardService = inject(BoardService);
 
   boards = this.boardService.boards;
-  boardList = computed(() => this.boards.value() ?? []);
+  boardList = computed(() => this.boardService.filteredBoards() ?? []);
   modalOpen = signal(false);
 
   addBoard(newBoard: NewBoard) {
