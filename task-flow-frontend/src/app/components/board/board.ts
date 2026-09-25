@@ -24,20 +24,20 @@ export class Board implements OnInit {
   tasks = toSignal(this.taskService.getTasks());
 
   todo = signal<TaskModel[]>([]);
-  inProgress: TaskModel[] = [];
-  review: TaskModel[] = [];
-  done: TaskModel[] = [];
+  inProgress = signal<TaskModel[]>([]);
+  review = signal<TaskModel[]>([]);
+  done = signal<TaskModel[]>([]);
 
   modalOpen = signal(false);
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe((tasks) => {
       const separatedTasks = separateTasksByStatus(tasks as TaskModel[]);
+
       this.todo.set(separatedTasks.todo);
-      // this.todo = separatedTasks.todo;
-      this.inProgress = separatedTasks.inProgress;
-      this.review = separatedTasks.review;
-      this.done = separatedTasks.done;
+      this.inProgress.set(separatedTasks.inProgress);
+      this.review.set(separatedTasks.review);
+      this.done.set(separatedTasks.done);
     });
   }
 
