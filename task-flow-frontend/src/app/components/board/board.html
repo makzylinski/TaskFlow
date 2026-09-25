@@ -7,24 +7,32 @@
     [title]="TaskStatus.TO_DO"
     [tasks]="todo()"
     (dropped)="drop($event, TaskStatus.TO_DO)"
+    (taskSelected)="selectedTask.set($event)"
   />
   <app-column
     [title]="TaskStatus.IN_PROGRESS"
     [tasks]="inProgress()"
     (dropped)="drop($event, TaskStatus.IN_PROGRESS)"
+    (taskSelected)="selectedTask.set($event)"
   />
   <app-column
     [title]="TaskStatus.REVIEW"
     [tasks]="review()"
     (dropped)="drop($event, TaskStatus.REVIEW)"
+    (taskSelected)="selectedTask.set($event)"
   />
   <app-column
     [title]="TaskStatus.DONE"
     [tasks]="done()"
     (dropped)="drop($event, TaskStatus.DONE)"
+    (taskSelected)="selectedTask.set($event)"
   />
 </div>
 
 @if (modalOpen()) {
   <app-task-modal [boardId]="boardId" (closed)="modalOpen.set(false)" (created)="addTask($event)" />
+}
+
+@if (selectedTask(); as task) {
+  <app-task-detail [task]="task" (closed)="selectedTask.set(null)" />
 }

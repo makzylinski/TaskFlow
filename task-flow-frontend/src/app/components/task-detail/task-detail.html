@@ -1,0 +1,38 @@
+<div class="backdrop" [class.backdrop--closing]="closing()" (click)="close()"></div>
+
+<aside
+  class="detail"
+  [class.detail--closing]="closing()"
+  role="dialog"
+  aria-label="Task details"
+  (animationend)="onAnimationEnd()"
+>
+  <div class="detail__top">
+    <span class="detail__crumb">{{ task().status }}</span>
+    <button type="button" class="detail__close" aria-label="Close" (click)="close()">×</button>
+  </div>
+
+  <div class="detail__body">
+    <h2 class="detail__title">{{ task().name }}</h2>
+
+    <div class="detail__props">
+      <div class="detail__row">
+        <span class="detail__label">Status</span>
+        <span class="detail__status">{{ task().status }}</span>
+      </div>
+      <div class="detail__row">
+        <span class="detail__label">Created</span>
+        <span class="detail__value">{{ task().dateCreated | date }}</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="detail__section">Description</div>
+      @if (task().description) {
+        <p class="detail__description">{{ task().description }}</p>
+      } @else {
+        <p class="detail__description detail__description--empty">No description</p>
+      }
+    </div>
+  </div>
+</aside>

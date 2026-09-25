@@ -10,12 +10,13 @@ import { TaskStatus } from '../../enum/task-status.enum';
 import { TaskService } from '../../services/task-service';
 import { separateTasksByStatus } from '../../utils/task-status.util';
 import { Column } from '../column/column';
+import { TaskDetail } from '../task-detail/task-detail';
 import { NewTask, TaskModal } from '../task-modal/task-modal';
 import { TaskModel } from '../task/task';
 
 @Component({
   selector: 'app-board',
-  imports: [CdkDropListGroup, Column, TaskModal],
+  imports: [CdkDropListGroup, Column, TaskModal, TaskDetail],
   styleUrl: './board.scss',
   templateUrl: './board.html',
 })
@@ -32,6 +33,7 @@ export class Board implements OnInit {
   done = signal<TaskModel[]>([]);
 
   modalOpen = signal(false);
+  selectedTask = signal<TaskModel | null>(null);
 
   ngOnInit(): void {
     this.loadTasks();

@@ -12,4 +12,5 @@ export class Column {
   title = input.required<string>();
   tasks = input.required<TaskModel[]>();
   dropped = output<CdkDragDrop<TaskModel[]>>();
+  taskSelected = output<TaskModel>();
 }
