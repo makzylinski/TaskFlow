@@ -1,4 +1,4 @@
-﻿import { Component, inject, signal } from '@angular/core';
+﻿import { Component, computed, inject, signal } from '@angular/core';
 import { BoardService } from '../../services/board-service';
 import { BoardModal, NewBoard } from '../board-modal/board-modal';
 
@@ -11,10 +11,14 @@ import { BoardModal, NewBoard } from '../board-modal/board-modal';
 export class Dashboard {
   private boardService = inject(BoardService);
 
+  boards = this.boardService.boards;
+  boardList = computed(() => this.boards.value() ?? []);
   modalOpen = signal(false);
 
   addBoard(newBoard: NewBoard) {
-    this.boardService.saveNewBoard(newBoard).subscribe();
-    this.modalOpen.set(false);
+    this.boardService.saveNewBoard(newBoard).subscribe(() => {
+      this.boards.reload();
+      this.modalOpen.set(false);
+    });
   }
 }
