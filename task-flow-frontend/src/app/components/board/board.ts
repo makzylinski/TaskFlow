@@ -8,7 +8,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TaskStatus } from '../../enum/task-status.enum';
 import { TaskService } from '../../services/task-service';
-import { separateTasksByStatus } from '../../utils/task-status';
+import { separateTasksByStatus } from '../../utils/task-status.util';
 import { Column } from '../column/column';
 import { NewTask, TaskModal } from '../task-modal/task-modal';
 import { TaskModel } from '../task/task';
