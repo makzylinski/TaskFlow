@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, input, OnInit } from '@angular/core';
 
 export interface TaskModel {
@@ -12,7 +13,7 @@ export interface TaskModel {
 }
 
 @Component({
-  imports: [],
+  imports: [DatePipe],
   selector: 'app-task',
   styleUrl: './task.scss',
   templateUrl: './task.html',
