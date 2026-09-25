@@ -1,10 +1,12 @@
 package com.max.TaskFlow.service;
 
 import com.max.TaskFlow.DTO.CreateTaskRequest;
+import com.max.TaskFlow.DTO.TaskResponse;
 import com.max.TaskFlow.model.Task;
 import com.max.TaskFlow.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,9 +30,18 @@ public class TaskService {
         return taskRepository.saveAll(tasks);
     }
 
-
-    public List<Task> getTasks() {
-        return taskRepository.findAll();
+    @Transactional(readOnly = true)
+    public List<TaskResponse> getTasks() {
+        return taskRepository.findAll().stream()
+                .map(t -> new TaskResponse(
+                        t.getTaskId(),
+                        t.getName(),
+                        t.getDescription(),
+                        t.getDateCreated(),
+                        t.getStatus(),
+                        t.getBoard() != null ? t.getBoard().getId() : null,
+                        t.getAssignee() != null ? t.getAssignee().getUserId() : null
+                )).toList();
     }
 
     public Task generateTask(CreateTaskRequest request) {

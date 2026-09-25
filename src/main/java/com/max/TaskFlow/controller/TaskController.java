@@ -1,6 +1,7 @@
 package com.max.TaskFlow.controller;
 
 import com.max.TaskFlow.DTO.CreateTaskRequest;
+import com.max.TaskFlow.DTO.TaskResponse;
 import com.max.TaskFlow.model.Task;
 import com.max.TaskFlow.service.TaskService;
 import jakarta.validation.Valid;
@@ -20,8 +21,8 @@ public class TaskController {
     TaskService taskService;
 
     @GetMapping("/tasks")
-    public ResponseEntity<List<Task>> getTasks() {
-        List<Task> tasks = taskService.getTasks();
+    public ResponseEntity<List<TaskResponse>> getTasks() {
+        List<TaskResponse> tasks = taskService.getTasks();
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 

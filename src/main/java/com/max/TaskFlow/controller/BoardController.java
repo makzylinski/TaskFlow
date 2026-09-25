@@ -32,11 +32,4 @@ public class BoardController {
         Board board = boardService.generateBoard(request);
         return new ResponseEntity<>(board, HttpStatus.CREATED);
     }
-
-
-    //@PostMapping("/new-task")
-    //    public ResponseEntity<Task> createTask(@Valid @RequestBody CreateTaskRequest request) {
-    //        Task task = taskService.generateTask(request);
-    //        return new ResponseEntity<>(task, HttpStatus.CREATED);
-    //    }
 }
