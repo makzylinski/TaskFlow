@@ -1,35 +1,37 @@
 :host {
-  flex: 1;
-  min-width: 260px;
+  flex: 0 0 258px;
 }
 
 .column {
-  background: #eceae5;
-  border: 1px solid #e0ded8;
-  border-radius: 12px;
-  padding: 16px;
-  min-height: 520px;
+  min-height: 160px;
+  padding: 12px;
+  background: #ecebe7;
+  border-radius: 10px;
 }
 
 .column__header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
+  justify-content: space-between;
+  padding: 2px 4px 10px;
 }
 
 .column__title {
   margin: 0;
-  font-size: 16px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: #3c3b38;
 }
 
 .column__count {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
   color: #6e6d68;
   background: #fff;
-  border-radius: 999px;
-  padding: 2px 8px;
+  border-radius: 10px;
+  padding: 2px 7px;
 }
 
 .column__list {

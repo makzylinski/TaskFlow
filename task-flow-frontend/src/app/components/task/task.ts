@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { TaskStatus } from '../../enum/task-status.enum';
+import { Icon } from '../icon/icon';
 
 export interface TaskModel {
   id: number;
@@ -13,11 +14,12 @@ export interface TaskModel {
 }
 
 @Component({
-  imports: [DatePipe],
+  imports: [DatePipe, Icon],
   selector: 'app-task',
   styleUrl: './task.scss',
   templateUrl: './task.html',
 })
 export class Task {
   task = input.required<TaskModel>();
+  done = computed(() => this.task().status === TaskStatus.DONE);
 }

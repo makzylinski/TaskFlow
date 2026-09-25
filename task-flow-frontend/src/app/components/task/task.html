@@ -1,5 +1,16 @@
-<div class="task">
+<div class="task" [class.task--done]="done()">
   <div class="task__header">{{ task().name }}</div>
-  <div class="task__date">{{ task().dateCreated | date }}</div>
-  <!-- <div class="task__person">{{ task().person }}</div> -->
+  <div class="task__footer">
+    @if (done()) {
+      <span class="task__meta task__meta--done">
+        <app-icon name="check" [size]="12" [strokeWidth]="2.4" />
+        Done
+      </span>
+    } @else {
+      <span class="task__meta">
+        <app-icon name="calendar" [size]="12" />
+        {{ task().dateCreated | date: 'MMM d' }}
+      </span>
+    }
+  </div>
 </div>

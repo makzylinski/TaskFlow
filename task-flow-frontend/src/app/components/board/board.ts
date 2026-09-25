@@ -4,13 +4,14 @@ import { ActivatedRoute } from '@angular/router';
 import { TaskStatus } from '../../enum/task-status.enum';
 import { TaskService } from '../../services/task-service';
 import { Column } from '../column/column';
+import { Icon } from '../icon/icon';
 import { TaskDetail } from '../task-detail/task-detail';
 import { NewTask, TaskModal } from '../task-modal/task-modal';
 import { TaskModel } from '../task/task';
 
 @Component({
   selector: 'app-board',
-  imports: [CdkDropListGroup, Column, TaskModal, TaskDetail],
+  imports: [CdkDropListGroup, Column, Icon, TaskModal, TaskDetail],
   styleUrl: './board.scss',
   templateUrl: './board.html',
 })

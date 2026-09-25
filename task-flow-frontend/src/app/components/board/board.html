@@ -1,5 +1,11 @@
-<div class="board-toolbar">
-  <button type="button" class="board-toolbar__add" (click)="modalOpen.set(true)">+ New task</button>
+<div class="board-bar">
+  <div class="board-bar__tabs">
+    <span class="board-bar__tab">Board</span>
+  </div>
+  <button type="button" class="board-bar__add" (click)="modalOpen.set(true)">
+    <app-icon name="plus" [size]="14" [strokeWidth]="2.2" />
+    New task
+  </button>
 </div>
 
 <div class="board" cdkDropListGroup>
