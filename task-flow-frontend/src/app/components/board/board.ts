@@ -31,8 +31,12 @@ export class Board implements OnInit {
   modalOpen = signal(false);
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe((tasks) => {
-      const separatedTasks = separateTasksByStatus(tasks as TaskModel[]);
+    this.loadTasks();
+  }
+
+  private loadTasks() {
+    this.taskService.getTasks(this.boardId).subscribe((tasks) => {
+      const separatedTasks = separateTasksByStatus(tasks);
 
       this.todo.set(separatedTasks.todo);
       this.inProgress.set(separatedTasks.inProgress);
@@ -41,13 +45,9 @@ export class Board implements OnInit {
     });
   }
 
-  addTask(newTask: NewTask) {
-    const task = {
-      title: newTask.name,
-      description: newTask.description,
-    };
-
+  addTask(_newTask: NewTask) {
     this.modalOpen.set(false);
+    this.loadTasks();
   }
 
   drop(event: CdkDragDrop<TaskModel[]>) {

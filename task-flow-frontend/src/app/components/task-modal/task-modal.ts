@@ -32,7 +32,8 @@ export class TaskModal {
       return;
     }
     const { name, description } = this.form.getRawValue();
-    this.created.emit({ name: name.trim(), description: description.trim() });
-    this.taskService.saveNewTask(name, description, this.boardId()).subscribe();
+    this.taskService
+      .saveNewTask(name.trim(), description.trim(), this.boardId())
+      .subscribe(() => this.created.emit({ name: name.trim(), description: description.trim() }));
   }
 }
