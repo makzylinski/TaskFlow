@@ -2,7 +2,6 @@ package com.max.TaskFlow.controller;
 
 import com.max.TaskFlow.DTO.CreateTaskRequest;
 import com.max.TaskFlow.DTO.TaskResponse;
-import com.max.TaskFlow.model.Task;
 import com.max.TaskFlow.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +26,8 @@ public class TaskController {
     }
 
     @PostMapping("/new-task")
-    public ResponseEntity<Task> createTask(@Valid @RequestBody CreateTaskRequest request) {
-        Task task = taskService.generateTask(request);
+    public ResponseEntity<TaskResponse> createTask(@Valid @RequestBody CreateTaskRequest request) {
+        TaskResponse task = taskService.generateTask(request);
         return new ResponseEntity<>(task, HttpStatus.CREATED);
     }
 }

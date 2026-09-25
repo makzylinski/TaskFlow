@@ -2,11 +2,15 @@ package com.max.TaskFlow.service;
 
 import com.max.TaskFlow.DTO.CreateTaskRequest;
 import com.max.TaskFlow.DTO.TaskResponse;
+import com.max.TaskFlow.model.Board;
 import com.max.TaskFlow.model.Task;
+import com.max.TaskFlow.repository.BoardRepository;
 import com.max.TaskFlow.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -14,6 +18,8 @@ import java.util.List;
 public class TaskService {
     @Autowired
     TaskRepository taskRepository;
+    @Autowired
+    BoardRepository boardRepository;
 
     public List<Task> initTestTasks() {
         List<Task> tasks = List.of(
@@ -44,8 +50,27 @@ public class TaskService {
                 )).toList();
     }
 
-    public Task generateTask(CreateTaskRequest request) {
+    @Transactional
+    public TaskResponse generateTask(CreateTaskRequest request) {
+        Board board = boardRepository.findById(request.boardId())
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Board not found: " + request.boardId()));
+
         Task task = new Task(request.name(), request.description());
-        return taskRepository.save(task);
+        task.setBoard(board);
+        Task saved = taskRepository.save(task);
+
+        return toResponse(saved);
+    }
+
+    private TaskResponse toResponse(Task t) {
+        return new TaskResponse(
+                t.getTaskId(),
+                t.getName(),
+                t.getDescription(),
+                t.getDateCreated(),
+                t.getStatus(),
+                t.getBoard() != null ? t.getBoard().getId() : null,
+                t.getAssignee() != null ? t.getAssignee().getUserId() : null);
     }
 }
