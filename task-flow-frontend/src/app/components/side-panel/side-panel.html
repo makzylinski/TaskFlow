@@ -1,1 +1,29 @@
-<div class="panel">Panel</div>
+<aside class="panel">
+  <div class="panel__name">
+    <div class="panel__name--icon">T</div>
+    <div class="panel__name--name">TaskFlow</div>
+  </div>
+
+  <nav class="panel__nav">
+    <a class="panel__link" routerLink="/dashboard" routerLinkActive="panel__link--active">
+      <app-icon name="boards" [size]="17" />
+      Boards
+    </a>
+    <span class="panel__link panel__link--disabled" aria-disabled="true">
+      <app-icon name="members" [size]="17" />
+      Members
+    </span>
+    <span class="panel__link panel__link--disabled" aria-disabled="true">
+      <app-icon name="settings" [size]="17" />
+      Settings
+    </span>
+  </nav>
+
+  <div class="panel__user">
+    <div class="panel__user--avatar">MZ</div>
+    <div class="panel__user--info">
+      <span class="panel__user--name">Maks Zylinski</span>
+      <span class="panel__user--role">Admin</span>
+    </div>
+  </div>
+</aside>
