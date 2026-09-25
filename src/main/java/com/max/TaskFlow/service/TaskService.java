@@ -21,21 +21,6 @@ public class TaskService {
     @Autowired
     BoardRepository boardRepository;
 
-    public List<Task> initTestTasks() {
-        List<Task> tasks = List.of(
-                new Task("Design onboarding flow", "Create mobile onboarding screens in Figma"),
-                new Task("Setup CI pipeline", "Configure GitHub Actions: build, test, lint"),
-                new Task("Implement JWT auth", "Login and register endpoints with Spring Security"),
-                new Task("Drag & drop on board", "Move tasks between columns using Angular CDK"),
-                new Task("Write TaskService tests", "Unit tests with JUnit 5 and Mockito"),
-                new Task("Add task filters", "Filter tasks by assignee and due date"),
-                new Task("Dockerize backend", "Dockerfile + docker-compose with MySQL"),
-                new Task("Fix CORS config", "Global CorsConfigurationSource for localhost:4200")
-        );
-
-        return taskRepository.saveAll(tasks);
-    }
-
     @Transactional(readOnly = true)
     public List<TaskResponse> getTasks(Long boardId) {
         return taskRepository.findByBoardId(boardId).stream()
