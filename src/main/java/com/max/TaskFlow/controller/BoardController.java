@@ -1,5 +1,6 @@
 package com.max.TaskFlow.controller;
 
+import com.max.TaskFlow.DTO.BoardResponse;
 import com.max.TaskFlow.DTO.CreateBoardRequest;
 import com.max.TaskFlow.model.Board;
 import com.max.TaskFlow.service.BoardService;
@@ -20,8 +21,8 @@ public class BoardController {
     BoardService boardService;
 
     @GetMapping("/boards")
-    public ResponseEntity<List<Board>> getAllBoards() {
-        List<Board> boards = boardService.getBoards();
+    public ResponseEntity<List<BoardResponse>> getAllBoards() {
+        List<BoardResponse> boards = boardService.getBoards();
 
         return new ResponseEntity<>(boards, HttpStatus.OK);
     }
