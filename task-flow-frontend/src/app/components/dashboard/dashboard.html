@@ -5,7 +5,7 @@
     <p>Could not load boards. <button (click)="boards.reload()">Retry</button></p>
   } @else {
     @for (b of boardList(); track b.id) {
-      <div class="board-card">
+      <a class="board-card" [routerLink]="['/board', b.id]">
         <h3>{{ b.name }}</h3>
         <p>{{ b.description }}</p>
         <div class="board-card__footer">
@@ -13,7 +13,7 @@
             {{ b.taskCount }} {{ b.taskCount === 1 ? 'task' : 'tasks' }}
           </span>
         </div>
-      </div>
+      </a>
     }
     <div class="dashboard__new" (click)="modalOpen.set(true)">
       <div class="dashboard__new--plus">+</div>

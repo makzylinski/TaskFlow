@@ -1,9 +1,10 @@
 ﻿import { Component, computed, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { BoardService } from '../../services/board-service';
 import { BoardModal, NewBoard } from '../board-modal/board-modal';
 
 @Component({
-  imports: [BoardModal],
+  imports: [BoardModal, RouterLink],
   selector: 'app-dashboard',
   styleUrl: './dashboard.scss',
   templateUrl: './dashboard.html',
