@@ -26,4 +26,10 @@ public class Board {
     private Set<User> members = new HashSet<>();
     @OneToMany(mappedBy = "board")
     private List<Task> tasks = new ArrayList<>();
+
+    public Board(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.dateCreated = LocalDateTime.now();
+    }
 }

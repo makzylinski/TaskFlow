@@ -18,5 +18,7 @@ public class BoardService {
     }
 
     public Board generateBoard(CreateBoardRequest request) {
+        Board board = new Board(request.name(), request.description());
+        return boardRepository.save(board);
     }
 }
